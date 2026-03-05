@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+  <title>CSS and Javascript practice</title>
+
+  <link rel="stylesheet" href="newstyle_c.css">
+
+  <script>
+    function calculatePrice(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get input values
+      let userName = document.getElementById("userName").value;
+      let units = parseFloat(document.getElementById("units").value);
+      let pricePerUnit = parseFloat(document.getElementById("pricePerUnit").value);
+
+      // Validate input
+      if (isNaN(units) || isNaN(pricePerUnit)) {
+        alert("Please enter valid numbers for units and price per unit.");
+        return;
+      }
+
+      // Calculate total price
+      let totalPrice = units * pricePerUnit;
+      let totalPriceWithVAT = totalPrice * 1.2; // Assuming 20% VAT
+
+      // Display result
+      document.getElementById("result").innerHTML = 
+        `<p><strong>Dear ${userName},</strong></p>
+         <p></t>Your order total before tax: <b>£${totalPrice.toFixed(2)}</b></p>
+         <p>Your order total after tax (20% VAT): <b>£${totalPriceWithVAT.toFixed(2)}</b></p>`;
+    }
+
+    function countRefresh() {
+      let count = sessionStorage.getItem("refreshCount") || 0;
+      count = parseInt(count) + 1;
+      sessionStorage.setItem("refreshCount", count);
+
+      let response = prompt(`This page has been refreshed ${count} times.\nDo you want to refresh again? (Y/N)`, "N");
+      if (response.toUpperCase() === "Y") {
+        location.reload();
+      }
+    }
+  </script>
+
+<style>
+  
+  label, input, select {
+      display: flex;
+     
+  }
+  button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+  }
+  .error {
+      color: red;
+      font-size: 12px;
+  }
+  .bulb-container {
+      margin-top: 20px;
+  }
+</style>
+
+
+</head>
+
+
+<body>
+  <div class="parent" >
+
+    <div class="top_right">
+      <p><strong>Email:</strong> support@example.com  <strong>Phone:</strong> +44-456-7890</p>
+    </div>
+
+
+  <div class="head_section">
+
+   
+
+      <div class="logo">
+        <img style="height: 60px; width: 60px; margin-top: 20px; margin-left: 50px;" src="./images/contact.jpg">
+      </div>
+
+
+     
+
+      <div class="menu">
+        <ul>
+          <li>
+            <a href="menu_2.html"> 
+              <img src="./images/new.svg">
+              <span>Home</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="Grading.html">
+              <img src="./images/recent.svg">
+              <span>About Us</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="menu_2.html">
+              <img src="./images/search.svg">
+              <span>Our Research</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <img src="./images/contact1.jpg">
+              <span>Contact Us</span>
+            </a>
+          </li>
+
+        </ul>
+    </div>
+
+</div>
+
+    <div class="side_bar">
+    </br></br>
+      <p>Item 1</p>
+    </br>
+      <p> Item 2</br></p>
+    </br>
+
+      <form >
+        <input type="button" value="Refresh Page" onclick="countRefresh();">
+      </form>
+
+    </div>
+
+
+
+
+    <div class="mainbody">
+      <div class="left_body">
+
+        <div class="form_style">
+          <h2 style="text-align: center; color: blue;">Order Price Calculator</h2>
+        
+          <form onsubmit="calculatePrice(event)">
+            <label for="userName">Enter Name:  </label>
+            <input type="text" id="userName" name="User_name" placeholder="Enter name" required><br><br>
+          
+            <label for="units">Order Units:  </label>
+            <input type="number" id="units" name="Units" placeholder="Enter units" required><br><br>
+          
+            <label for="pricePerUnit">Per Unit Price:</label>
+            <input type="number" id="pricePerUnit" name="price" placeholder="Enter price per unit" required><br><br>
+          
+            <input type="submit" value="Calculate">
+          </form>
+        
+        </div>
+
+    
+        <div id="result" style="margin-top: 20px; font-weight: bold; display: block; float: right;"></div>
+    
+        
+
+        <div class="bulb-container">
+          <h2 style="text-align: center; color: blue;">Repetition/Loop</h2></br>
+          <div id="loopOutput"></div>
+
+          <script>
+            let i = 0;
+            function slowLoop() {
+              if (i < 10) {
+                document.getElementById("loopOutput").innerHTML += `${i}. Welcome to CN4003 </br>`;
+                i++;
+                setTimeout(slowLoop, 500); // Delay of 500ms (0.5 seconds)
+              }
+            }
+            slowLoop(); // Start the loop
+          </script>
+        </div>
+
+
+          
+
+         
+      </div>
+
+  <div class="right_body">
+
+   
+    <form class="form_style" onsubmit="return validateForm()">
+      <h2 style="text-align: center; color: blue;">Fill the Form</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <span class="error" id="nameError"></span>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <span class="error" id="emailError"></span>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address">
+        <span class="error" id="addressError"></span>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone">
+        <span class="error" id="phoneError"></span>
+
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="">Select your country</option>
+            <option value="USA">United States</option>
+            <option value="UK">United Kingdom</option>
+            <option value="Canada">Canada</option>
+            <option value="Australia">Australia</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+            <option value="India">India</option>
+            <option value="China">China</option>
+            <option value="Japan">Japan</option>
+            <option value="Brazil">Brazil</option>
+            <option value="South Africa">South Africa</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Russia">Russia</option>
+            <option value="Italy">Italy</option>
+            <option value="Spain">Spain</option>
+        </select>
+        <span class="error" id="countryError"></span>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="bulb-container">
+       
+    </div>
+
+
+  </div>
+</div> 
+<div class="my_bottom">
+  <P>Abdul Copy Rights</P>
+  
+  </div>
+
+
+ 
+ 
+</body>
+</html>

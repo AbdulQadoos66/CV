@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+  <title>CSS Menu</title>
+  <link rel="stylesheet" href="newstyle_c.css">
+<style>
+  body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+            width: 200px;
+            background-color:  rgb(235, 215, 167);
+        }
+        label {
+            flex: 1;
+            font-size: 16px;
+        }
+        input {
+            width: 120px;
+            padding: 5px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+</style>
+
+
+</head>
+<body>
+ 
+<div class="parent" >
+
+  <div class="top_right">
+    <p><strong>Email:</strong> support@example.com  <strong>Phone:</strong> +44-456-7890</p>
+  </div>
+
+
+<div class="head_section">
+
+ 
+
+    <div class="logo">
+      <img style="height: 60px; width: 60px; margin-top: 20px; margin-left: 50px;" src="./images/contact.jpg">
+    </div>
+
+
+   
+
+    <div class="menu">
+      <ul>
+        <li>
+          <a href="menu_2.html"> 
+            <img src="./images/new.svg">
+            <span>Home</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="bb.html">
+            <img src="./images/recent.svg">
+            <span>About Us</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="menu_2.1.html">
+            <img src="./images/search.svg">
+            <span>Our Research</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <img src="./images/contact1.jpg">
+            <span>Contact Us</span>
+          </a>
+        </li>
+
+      </ul>
+  </div>
+
+</div>
+
+  <div class="side_bar">
+  </br></br>
+    <p>Item 1</p>
+  </br>
+    <p> Item 2</br></p>
+  </br>
+
+    <form >
+      <input type="button" value="Refresh Page" onclick="countRefresh();">
+    </form>
+
+  </div>
+
+
+
+
+  <div class="mainbody">
+    <div class="left_body">
+      <div class="form_style">
+    
+
+      <h2>Grade Calculator</h2>
+      <form id="gradeForm">
+          <div class="form-group">
+              <label for="subject1">Math:</label>
+              <input type="number" id="subject1" min="0" max="100" required>
+          </div>
+  
+          <div class="form-group">
+              <label for="subject2">Science:</label>
+              <input type="number" id="subject2" min="0" max="100" required>
+          </div>
+  
+          <div class="form-group">
+              <label for="subject3">English:</label>
+              <input type="number" id="subject3" min="0" max="100" required>
+          </div>
+  
+          <div class="form-group">
+              <label for="subject4">History:</label>
+              <input type="number" id="subject4" min="0" max="100" required>
+          </div>
+  
+          <div class="form-group">
+              <label for="subject5">Computer Science:</label>
+              <input type="number" id="subject5" min="0" max="100" required>
+          </div>
+  
+          <button type="button" onclick="calculateGrades()">Calculate Grades</button>
+      </form>
+  
+      <div id="result"></div>
+  
+      <script>
+          function getGrade(marks) {
+              switch (true) {
+                  case (marks >= 90 && marks <= 100):
+                      return "A+";
+                  case (marks >= 80 && marks < 90):
+                      return "A";
+                  case (marks >= 70 && marks < 80):
+                      return "B";
+                  case (marks >= 60 && marks < 70):
+                      return "C";
+                  case (marks >= 50 && marks < 60):
+                      return "D";
+                  default:
+                      return "F";
+              }
+          }
+  
+          function calculateGrades() {
+              let subjects = [
+                  parseFloat(document.getElementById("subject1").value),
+                  parseFloat(document.getElementById("subject2").value),
+                  parseFloat(document.getElementById("subject3").value),
+                  parseFloat(document.getElementById("subject4").value),
+                  parseFloat(document.getElementById("subject5").value)
+              ];
+  
+              let totalMarks = 0;
+              let output = "<h3>Individual Subject Grades<br></h3>";
+              
+  
+              for (let i = 0; i < subjects.length; i++) {
+                  if (isNaN(subjects[i]) || subjects[i] < 0 || subjects[i] > 100) {
+                      alert("Please enter valid marks (0-100) for all subjects.");
+                      return;
+                  }
+                  let grade = getGrade(subjects[i]);
+                  output += `Subject ${i + 1}: ${subjects[i]}% - Grade: ${grade}<br>`;
+                  totalMarks += subjects[i];
+              }
+  
+              let percentage = totalMarks / subjects.length;
+              let finalGrade = getGrade(percentage);
+  
+              output += `<h3>Final Results</h3>`;
+              output += `Total Marks: ${totalMarks} / 500 <br>`;
+              output += `Final Percentage: ${percentage.toFixed(2)}% <br>`;
+              output += `<strong>Overall Grade: ${finalGrade}</strong>`;
+  
+              document.getElementById("result").innerHTML = output;
+          }
+      </script>
+
+</div>
+  
+
+        
+
+       
+    </div>
+
+<div class="right_body">
+
+ 
+</div>
+
+</div> 
+<div class="my_bottom">
+<P>Abdul Copy Rights</P>
+
+</div>
+
+
+
+
+</body>
+</html>
